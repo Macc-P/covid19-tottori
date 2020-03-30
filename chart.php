@@ -10,9 +10,6 @@ $org_data = json_decode(file_get_contents("https://spreadsheets.google.com/feeds
 //シート2の取り出し（未使用）
 //$org_data_city = json_decode(file_get_contents("https://spreadsheets.google.com/feeds/list/".$spread_id."/2/public/values?alt=json"),true);
 
-//更新日時をとりだす
-date_default_timezone_set('Asia/Tokyo');
-$update = date("y年m月d日",strtotime($org_data[feed][updated]['$t']));
 
 foreach($org_data[feed][entry] as $day_data){
     //日付のデータを作る
@@ -60,8 +57,6 @@ foreach($org_data_city[feed][entry] as $day_data){
 
 ?>
 
-//データの最終更新日
-document.getElementById('lastedit').innerHTML = '（<?php echo $update;?>更新）';
 
 //PCR日別
 var ctx = document.getElementById('pcrtest_1').getContext('2d');
