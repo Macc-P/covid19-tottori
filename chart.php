@@ -5,6 +5,8 @@ header('content-type: text/javascript; charset=utf-8');
 //スプレッドシートのIDとグラフで使う色を指定
 $spread_id = '1rEuzuQYLDQQ0hsjTdtfXXxdbhrtJkf9OLn6zXjibRY8';
 $graph_color = '#1A4472';
+$graph_color2 = '#b22222';
+
 
 $org_data = json_decode(file_get_contents("https://spreadsheets.google.com/feeds/list/".$spread_id."/1/public/values?alt=json"),true);
 //シート2の取り出し（未使用）
@@ -24,16 +26,24 @@ foreach($org_data[feed][entry] as $day_data){
     $tel_data[day][] = (int)$day_data['gsx$相談件数']['$t'];
 
     //PCR陽性
-    $pos_data[total][] = (int)$day_data['gsx$陽性累計']['$t'];
-    $pos_data[day][] = (int)$day_data['gsx$pcr陽性']['$t'];
+    $postrue_data[total][] = (int)$day_data['gsx$陽性累計']['$t'];
+    $postrue_data[day][] = (int)$day_data['gsx$pcr陽性']['$t'];
+
+    //PCR陰性
+    $posfalse_data[total][] = (int)$day_data['gsx$陰性累計']['$t'];
+    $posfalse_data[day][] = (int)$day_data['gsx$pcr陰性']['$t'];
 
 }
 
     //PCR検査数
-    $pcrtested_total[datasets][] = array('data'=>$pcrtested_data[total],'label'=>'累計','backgroundColor'=>$graph_color);
+    $pcrtested_total[datasets][] = array('data'=>$postrue_data[total],'label'=>'陽性','backgroundColor'=>$graph_color2 , 'yAxisID'=>'pcr_bar');
+    $pcrtested_total[datasets][] = array('data'=>$posfalse_data[total],'label'=>'陰性','backgroundColor'=>$graph_color , 'yAxisID'=>'pcr_bar');
+    $pcrtested_total[datasets][] = array('data'=>$pcrtested_data[total],'label'=>'検査数','backgroundColor'=>'rgba(0,0,255,0)','borderColor'=>'rgba(0,0,255,0)','yAxisID'=>'pcr_line','type' => 'line','fill'=>false);
     $pcrtested_total[labels] = $date;
 
-    $pcrtested_day[datasets][] = array('data'=>$pcrtested_data[day],'label'=>'日','backgroundColor'=>$graph_color);
+    $pcrtested_day[datasets][] = array('data'=>$postrue_data[day],'label'=>'陽性','backgroundColor'=>$graph_color2 , 'yAxisID'=>'pcr_bar');
+    $pcrtested_day[datasets][] = array('data'=>$posfalse_data[day],'label'=>'陰性','backgroundColor'=>$graph_color , 'yAxisID'=>'pcr_bar');
+    $pcrtested_day[datasets][] = array('data'=>$pcrtested_data[day],'label'=>'検査数','backgroundColor'=>'rgba(0,0,255,0)','borderColor'=>'rgba(0,0,255,0)','yAxisID'=>'pcr_line','type' => 'line','fill'=>false);
     $pcrtested_day[labels] = $date;
 
     //相談件数
@@ -71,6 +81,32 @@ var chart = new Chart(ctx, {
 
     // ここに設定オプションを書きます
     options: {
+        legend:{
+            display:true,
+            labels:{
+                filter: function(items,chartData){
+                    return items.text !== '検査数';
+                }
+            },
+        },
+        tooltips:{
+            mode:'index',
+            intersect:false,
+        },
+        scales: {
+            xAxes:[{
+                stacked:true,
+            }],
+            yAxes:[{
+                id:'pcr_bar',
+                stacked:true,
+
+            },{
+                id:'pcr_line',
+                stacked:false,
+                display:false,
+            }]
+        }
 
     }
 });
@@ -89,6 +125,43 @@ var chart = new Chart(ctx, {
 
     // ここに設定オプションを書きます
     options: {
+        legend:{
+            display:true,
+            labels:{
+                filter: function(items,chartData){
+                    return items.text !== '検査数累計';
+                }
+            },
+        },
+        tooltips:{
+            mode:'index',
+            intersect:false,
+        },
+        scales: {
+            xAxes:[{
+                stacked:true,
+            }],
+            yAxes:[{
+                id:'pcr_bar',
+                stacked:true,
+                ticks:{
+                    beginAtZero:true,
+                    min:0,
+                    max:<?php echo max($pcrtested_data[total]);?>,
+                    stepSize:50,
+                },
+            },{
+                id:'pcr_line',
+                stacked:false,
+                display:false,
+                ticks:{
+                    beginAtZero:true,
+                    min:0,
+                    max:<?php echo max($pcrtested_data[total]);?>,
+                    stepSize:50,
+                },
+            }]
+        }
 
     }
 });
@@ -121,42 +194,6 @@ var chart = new Chart(ctx, {
 
     // データセットのデータ
     data: <?php echo json_encode($tel_total,JSON_UNESCAPED_UNICODE);?>
-    
-    ,
-
-    // ここに設定オプションを書きます
-    options: {
-
-    }
-});
-document.getElementById('pos_total_bad').innerHTML = '<?php echo end($pos_data[total]);?>件';
-
-//陽性日別
-var ctx = document.getElementById('pos_1').getContext('2d');
-var chart = new Chart(ctx, {
-    // 作成したいチャートのタイプ
-    type: 'bar',
-
-    // データセットのデータ
-    data: <?php echo json_encode($pos_day,JSON_UNESCAPED_UNICODE);?>
-    
-    ,
-
-    // ここに設定オプションを書きます
-    options: {
-
-    }
-});
-document.getElementById('pos_day_bad').innerHTML = '<?php echo end($pos_data[day]);?>件（<?php echo preg_replace('#\d{4}/#','',end($date));?>）';
-
-//陽性累計
-var ctx = document.getElementById('pos_2').getContext('2d');
-var chart = new Chart(ctx, {
-    // 作成したいチャートのタイプ
-    type: 'bar',
-
-    // データセットのデータ
-    data: <?php echo json_encode($pos_total,JSON_UNESCAPED_UNICODE);?>
     
     ,
 

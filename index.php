@@ -43,7 +43,7 @@
                         <div class="card">
                               <div class="card-header">
                                     <i class="fas fa-vial"></i>
-                                    PCR検査実施数
+                                    PCR検査実施結果
                               </div>
                               <div class="card-body">
                                     <ul class="nav nav-tabs">
@@ -104,36 +104,7 @@
                             </div>
                   </div>
 
-                  <div class="col mb-4">
-                        <div class="card">
-                              <div class="card-header">
-                                    <i class="fas fa-stethoscope"></i>
-                                    陽性患者数
-                              </div>
-                              <div class="card-body">
-                                    <ul class="nav nav-tabs">
-                                          <li class="nav-item"><a class="nav-link active" href="#pos_day" data-toggle="tab">
-                                                日別<span class="badge badge-info" id="pos_day_bad"></span>
-                                          </a></li>
-                                          <li class="nav-item"><a class="nav-link" href="#pos_total" data-toggle="tab">
-                                                累計<span class="badge badge-info" id="pos_total_bad"></span>
-                                          </a></li>
-                                    </ul>
-                                    <div class="tab-content">
-                                          <div class="tab-pane active" id="pos_day">
-                                                <canvas id="pos_1">
-                                          </div>
-                                          <div class="tab-pane" id="pos_total">
-                                                <canvas id="pos_2">
-                                          </div>
-                                    </div>
-                              </div>
-                              <div class="card-footer text-muted">
-                                    <small><a href="https://www.pref.tottori.lg.jp/item/1197213.htm">鳥取県HP</a>より</small>
-                              </div>
 
-                            </div>
-                  </div>
                   <div class="col mb-4">
                         
                   </div>
@@ -164,8 +135,8 @@
 
                   <small>
                         <p>鳥取県HPからのデータは<a href="https://docs.google.com/spreadsheets/d/1rEuzuQYLDQQ0hsjTdtfXXxdbhrtJkf9OLn6zXjibRY8/edit?usp=sharing">Googleスプレッドシート</a>で管理しています。</p>
-                        <p>チャート生成：<a href="https://www.chartjs.org/">Chart.js</a> デザイン：<a href="https://getbootstrap.com/">Bootstrap</a><br>
-                        サイトのソースコードはgithubで管理しています。</p>
+                        <p>チャート生成：<a href="https://www.chartjs.org/">Chart.js</a> デザイン：<a href="https://getbootstrap.com/">Bootstrap</a> 絵文字：<a href="https://fontawesome.com/">Font Awesome</a><br>
+                        サイトのソースコードは<a href="https://github.com/Macc-P/covid19-tottori">GitHub</a>で管理しています。</p>
                   </small>
 
       </div>
