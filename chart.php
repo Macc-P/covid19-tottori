@@ -106,7 +106,7 @@ var chart = new Chart(ctx, {
                 stacked:false,
                 display:false,
             }]
-        }
+        },
 
     }
 });
@@ -144,25 +144,13 @@ var chart = new Chart(ctx, {
             yAxes:[{
                 id:'pcr_bar',
                 stacked:true,
-                ticks:{
-                    beginAtZero:true,
-                    min:0,
-                    max:<?php echo max($pcrtested_data[total]);?>,
-                    stepSize:50,
-                },
+
             },{
                 id:'pcr_line',
                 stacked:false,
                 display:false,
-                ticks:{
-                    beginAtZero:true,
-                    min:0,
-                    max:<?php echo max($pcrtested_data[total]);?>,
-                    stepSize:50,
-                },
             }]
-        }
-
+        },
     }
 });
 
