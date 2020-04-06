@@ -104,6 +104,35 @@
                             </div>
                   </div>
 
+                  <div class="col mb-4">
+                        <div class="card">
+                              <div class="card-header">
+                                    <i class="fas fa-procedures"></i>
+                                    病床数
+                              </div>
+                              <div class="card-body">
+                                    <div class="row">
+                                          <div class="col-md-4 alert alert-danger" role="alert" data-toggle="tooltip" data-placement="top" title="重傷者（人工呼吸器等の装着を要する者）を受け入れ">
+                                                重症患者受入病床<br>
+                                                <b>38床+α</b>
+                                          </div>
+                                          <div class="col-md-4 alert alert-warning" role="alert" data-toggle="tooltip" data-placement="top" title="中等症者（酸素吸入や基礎疾患の治療を要する者）を中心にを受け入れ">
+                                                その他の病床<br>
+                                                <b>227床+α</b>
+                                          </div>
+                                          <div class="col-md-4 alert alert-danger" role="alert" data-toggle="tooltip" data-placement="top" title="軽症・無症状者を受け入れ">
+                                                宿泊施設等<br>
+                                                <b>68床+α+自宅</b>
+                                          </div>
+                                          4月3日現在
+                                    </div>
+                              </div>
+                              <div class="card-footer text-muted">
+                                    <small><a href="https://www.pref.tottori.lg.jp/item/1197213.htm">特措法に基づく鳥取県新型コロナウイルス感染症対策本部(第2回)</a>会議資料より</small>
+                              </div>
+
+                            </div>
+                  </div>
 
                   <div class="col mb-4">
                         
@@ -124,8 +153,8 @@
                               </button>
                             </div>
                             <div class="modal-body">
-                              <p>鳥取県がホームページで公表している相談件数の累計値と、各日のデータを足したときの合計値が異なることがあります。（3/30等）<br>
-                              少なくとも、3/29のデータでは計算が合っていましたが、そこからズレが発生しています。<br>
+                              <p>鳥取県がホームページで公表している相談件数の累計値と、各日のデータを足したときの合計値が異なることがあります。（3/29以降）<br>
+                              少なくとも、3/29に更新されたデータでは計算が合っていましたが、そこからズレが発生しています。<br>
                               このサイトのデータは<b>日別の相談件数の合計</b>を算出しています。</p>
                             </div>
                           </div><!-- /.modal-content -->
@@ -137,6 +166,7 @@
                         <p>鳥取県HPからのデータは<a href="https://docs.google.com/spreadsheets/d/1rEuzuQYLDQQ0hsjTdtfXXxdbhrtJkf9OLn6zXjibRY8/edit?usp=sharing">Googleスプレッドシート</a>で管理しています。</p>
                         <p>チャート生成：<a href="https://www.chartjs.org/">Chart.js</a> デザイン：<a href="https://getbootstrap.com/">Bootstrap</a> 絵文字：<a href="https://fontawesome.com/">Font Awesome</a><br>
                         サイトのソースコードは<a href="https://github.com/Macc-P/covid19-tottori">GitHub</a>で管理しています。</p>
+                        <p>管理人：<a href="https://twitter.com/maccha_pie">maccha</a></p>
                   </small>
 
       </div>
@@ -147,6 +177,9 @@
       <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
       <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+      <script>
+            $('[data-toggle="tooltip"]').tooltip()
+      </script>
       <!-- Chart -->
       <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
       <script src="./chart.php"></script>
