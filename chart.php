@@ -6,7 +6,7 @@ header('content-type: text/javascript; charset=utf-8');
 $spread_id = '1rEuzuQYLDQQ0hsjTdtfXXxdbhrtJkf9OLn6zXjibRY8';
 $graph_color = '#1A4472';
 $graph_color2 = '#b22222';
-
+$day_format = 'MM/DD';
 
 $org_data = json_decode(file_get_contents("https://spreadsheets.google.com/feeds/list/".$spread_id."/1/public/values?alt=json"),true);
 //シート2の取り出し（未使用）
@@ -68,6 +68,7 @@ foreach($org_data_city[feed][entry] as $day_data){
 ?>
 
 
+
 //PCR日別
 var ctx = document.getElementById('pcrtest_1').getContext('2d');
 var chart = new Chart(ctx, {
@@ -96,6 +97,15 @@ var chart = new Chart(ctx, {
         scales: {
             xAxes:[{
                 stacked:true,
+                type:'time',
+                time:{
+                    unit:'week',
+                    displayFormats:{
+                        week: '<?php echo $day_format;?>'
+                    },
+                },
+                stepSize:1,
+
             }],
             yAxes:[{
                 id:'pcr_bar',
@@ -129,7 +139,7 @@ var chart = new Chart(ctx, {
             display:true,
             labels:{
                 filter: function(items,chartData){
-                    return items.text !== '検査数累計';
+                    return items.text !== '検査数';
                 }
             },
         },
@@ -140,6 +150,15 @@ var chart = new Chart(ctx, {
         scales: {
             xAxes:[{
                 stacked:true,
+                type:'time',
+                time:{
+                    unit:'week',
+                    displayFormats:{
+                        week: '<?php echo $day_format;?>'
+                    },
+                },
+                stepSize:1,
+
             }],
             yAxes:[{
                 id:'pcr_bar',
@@ -169,7 +188,18 @@ var chart = new Chart(ctx, {
 
     // ここに設定オプションを書きます
     options: {
-
+        scales:{
+            xAxes: [{
+                type:'time',
+                time:{
+                    unit:'week',
+                    displayFormats:{
+                        week: '<?php echo $day_format;?>'
+                    },
+                },
+                stepSize:1,
+            }]
+        }
     }
 });
 document.getElementById('tel_day_bad').innerHTML = '<?php echo end($tel_data[day]);?>件（<?php echo preg_replace('#\d{4}/#','',end($date));?>）';
@@ -187,7 +217,18 @@ var chart = new Chart(ctx, {
 
     // ここに設定オプションを書きます
     options: {
-
+        scales:{
+            xAxes: [{
+                type:'time',
+                time:{
+                    unit:'week',
+                    displayFormats:{
+                        week: '<?php echo $day_format;?>'
+                    },
+                },
+                stepSize:1,
+            }]
+        }
     }
 });
 document.getElementById('tel_total_bad').innerHTML = '<?php echo end($tel_data[total]);?>件';

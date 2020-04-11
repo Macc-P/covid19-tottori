@@ -36,7 +36,9 @@
     <body style="margin-top: 10px;">
       <div class="container">
                               <!-- ヘッダーメッセージ -->
-
+                              <div class="alert alert-danger" role="alert">
+                                    感染したと思ったら、<b>医療機関を受診する前に</b><a href="https://www.pref.tottori.lg.jp/289705.htm">相談</a>を
+                              </div>
             <div class="row row-cols-1 row-cols-lg-2">
 
                   <div class="col mb-4">
@@ -120,7 +122,7 @@
                                                 その他の病床<br>
                                                 <b>227床+α</b>
                                           </div>
-                                          <div class="col-md-4 alert alert-danger" role="alert" data-toggle="tooltip" data-placement="top" title="軽症・無症状者を受け入れ">
+                                          <div class="col-md-4 alert alert-success" role="alert" data-toggle="tooltip" data-placement="top" title="軽症・無症状者を受け入れ">
                                                 宿泊施設等<br>
                                                 <b>68床+α+自宅</b>
                                           </div>
@@ -128,7 +130,7 @@
                                     </div>
                               </div>
                               <div class="card-footer text-muted">
-                                    <small><a href="https://www.pref.tottori.lg.jp/item/1197213.htm">特措法に基づく鳥取県新型コロナウイルス感染症対策本部(第2回)</a>会議資料より</small>
+                                    <small><a href="https://www.pref.tottori.lg.jp/item/1204603.htm#itemid1204603">特措法に基づく鳥取県新型コロナウイルス感染症対策本部(第2回)</a>会議資料より</small>
                               </div>
 
                             </div>
@@ -181,7 +183,7 @@
             $('[data-toggle="tooltip"]').tooltip()
       </script>
       <!-- Chart -->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.js"></script>
       <script src="./chart.php"></script>
       
       </body>
